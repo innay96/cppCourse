@@ -1,4 +1,6 @@
 #include <iostream>
+#include <string>
+#include <stdio.h>
 using namespace std;
 
 #pragma once
@@ -9,7 +11,8 @@ class CircularInt{
 		int min;
 		int max;
 		CircularInt(int minimum, int maximum) { min = 	minimum; max = maximum; hour = min;}
-		CircularInt(CircularInt &ci) { min = ci.min; max = ci.max; hour = ci.hour;}
+		CircularInt(CircularInt& ci) { this->min = ci.min; this->max = ci.max; this->hour = ci.hour;}
+		CircularInt(const CircularInt& ci) { this->min = ci.min; this->max = ci.max; this->hour = ci.hour;}
 
 // overload + operator
 friend CircularInt operator+(CircularInt &ci, int a){
@@ -19,10 +22,11 @@ friend CircularInt operator+(CircularInt &ci, int a){
 }
 
 //overload + operator when obj + obj
-friend CircularInt& operator+(CircularInt &ci, CircularInt &ci2){
-	ci.hour = ci.hour + ci2.hour;
-	ci.hour = ci.getRange();
-	return ci;	
+friend CircularInt& operator+(const CircularInt &ci, const CircularInt &ci2){
+	CircularInt temp(ci.min,ci.max);
+	temp.hour = ci.hour + ci2.hour;
+	temp.hour = temp.getRange();
+	return temp;	
 }
 
 // overload += operator
@@ -35,6 +39,7 @@ CircularInt& operator+=(int n){
 	return *this;	
 }
 
+//overload - operator changes the object to negative
 int operator-(){
 	return max-this->hour;
 }
@@ -134,6 +139,44 @@ CircularInt& operator= (const CircularInt& ci){
 	return *this;
 }
 
+//overload (/) operator when obj/int
+friend int operator/(const CircularInt &ci,int n){
+	CircularInt temp(ci);
+	temp.hour= ci.hour/n;
+	if(temp.hour*n!=ci.hour){
+		string msg="There is no number x in {"+to_string(ci.min)+","+to_string(ci.max)+"} such that x*"+to_string(n)+"="+to_string(ci.hour);
+ 		throw msg ;//exception
+	}
+	temp.hour=temp.getRange();
+	return temp.hour;
+}
+
+//overload (/) operator when int/obj
+friend int operator/(int n,const CircularInt &ci){
+	CircularInt temp(ci);
+	temp.hour= n/ci.hour;
+	if(temp.hour*n!=ci.hour){
+		string msg="There is no number x in {"+to_string(ci.min)+","+to_string(ci.max)+"} such that x*"+to_string(n)+"="+to_string(ci.hour);
+ 		throw msg ;//exception
+	}
+	temp.hour=temp.getRange();
+	return temp.hour;
+}
+
+//overload (/) operator when obj/obj
+friend int operator/(const CircularInt &ci,const CircularInt &ci2){
+	CircularInt temp(ci);
+	temp.hour= ci.hour/ci2.hour;
+	if(temp.hour*ci2.hour!=ci.hour){
+		string msg="There is no number x in {"+to_string(ci.min)+","+to_string(ci.max)+"} such that x*"+to_string(ci2.hour)+"="+to_string(ci.hour);
+ 		throw msg ;//exception
+	}
+	temp.hour=temp.getRange();
+	return temp.hour;
+}
+
+
+
 // overload output stream (<<) operator
 friend ostream& operator<< (ostream& os, const CircularInt &n){
 	os << n.hour;
@@ -154,11 +197,4 @@ int getRange(){
 		return (hour % max);
 	return hour;
 }
-/*
-//distructor
-~CircularInt(){
-delete &min;
-delete &max;
-delete &hour;
-}*/
 };
