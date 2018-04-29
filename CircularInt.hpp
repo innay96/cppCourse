@@ -162,7 +162,7 @@ class CircularInt{
 	}
 	
 	// overload input stream (>>) operator
-	friend istream& operator<< (istream& is, CircularInt &n){
+	friend istream& operator>> (istream& is, CircularInt &n){
 		is >> n.hour >> n.min >> n.max;
 		return is;
 	}
