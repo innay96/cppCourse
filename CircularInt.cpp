@@ -221,12 +221,12 @@ int realHour(int a,int min,int max);
 			this->hour = this->getRange();
 		return *this;
 	}
-
+/*
 	int& operator+=(int& n, const CircularInt &ci2){
 		n = (ci2.hour + n);	
 		n = realHour(n,ci2.min,ci2.max);
 		return n;
-	}
+	}*/
 
 	//overload - operator changes the object to negative
 	int CircularInt::operator-(){
