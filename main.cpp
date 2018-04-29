@@ -8,7 +8,6 @@ int main() {
 	CircularInt hour {1, 12}; // <hour is an integer between 1 and 12, like an hour on the clock>
 	cout << hour << endl; // 1
 	hour += 4; cout << hour << endl; // 5
-	if(!(hour==5))cout << hour%3 << endl;
 	(hour += 2)++; cout << hour << endl; // 8
 	hour += 18; cout << hour << endl; // 2 (18 hours after 8)
 	cout << -hour << endl; // 10 (2 hours before midnight)
