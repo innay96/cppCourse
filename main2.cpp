@@ -3,6 +3,7 @@
 #include <stdio.h>
 using namespace std;
 #include "CircularInt.hpp"
+#include "CircularInt.cpp"
 int main(){
     
     CircularInt hour {1, 12}; 
