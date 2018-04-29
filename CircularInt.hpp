@@ -70,7 +70,7 @@ class CircularInt{
 	
 	CircularInt& operator*=(int n);
 	CircularInt& operator*=(const CircularInt &ci);
-	friend int& operator*=(int& n, const CircularInt &ci);
+	//friend int& operator*=(int& n, const CircularInt &ci);
 	
 	CircularInt operator++();
 	CircularInt operator++(int);
