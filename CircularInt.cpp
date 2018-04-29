@@ -171,14 +171,15 @@ int realHour(int a,int min,int max);
 		return *this;
 	}
 	
-	int operator/=(int& n ,const CircularInt &ci){
+	int& operator/=(int& n ,const CircularInt &ci){
 		n=realHour(n,ci.min,ci.max);
-		int ans= n/ci.hour;
-		if(ci.hour*ans!=n){
-			string msg="There is no number x in {"+to_string(ci.min)+","+to_string(ci.max)+"} such that x*"+to_string(ci.hour)+"="+to_string(n);
+		int ans=n;
+		n= n/ci.hour;
+		if(ci.hour*n!=ans){
+			string msg="There is no number x in {"+to_string(ci.min)+","+to_string(ci.max)+"} such that x*"+to_string(ci.hour)+"="+to_string(ans);
  			throw msg ;//exception
 		}
-		return ans;	
+		return n;	
 	}
     
     // overload + operator
@@ -217,7 +218,7 @@ int realHour(int a,int min,int max);
 		return *this;
 	}
 
-	int operator+=(int& n, const CircularInt &ci2){
+	int& operator+=(int& n, const CircularInt &ci2){
 		n = (ci2.hour + n);	
 		n = realHour(n,ci2.min,ci2.max);
 		return n;
@@ -269,7 +270,7 @@ int realHour(int a,int min,int max);
 		return *this;		
 	}
 	
-	int operator-=(int& n, const CircularInt &ci2){
+	int& operator-=(int& n, const CircularInt &ci2){
 		n=n-ci2.hour;
 		n=realHour(n,ci2.min,ci2.max);
 		return n;
@@ -308,11 +309,11 @@ int realHour(int a,int min,int max);
 		this->hour = this->getRange();
 		return *this;
 	}
-	CircularInt operator*=(int& n, const CircularInt &ci){
-		CircularInt temp(ci.min,ci.max);
-		temp.hour = (temp.hour*n);
-		temp.hour = temp.getRange();
-		return temp;
+	int& operator*=(int& n, const CircularInt &ci){
+		n=realHour(n,ci.min,ci.max);
+		n=n*ci.hour;
+		n=realHour(n,ci.min,ci.max);
+		return n;
 	}
 
 	
