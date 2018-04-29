@@ -64,7 +64,13 @@ class CircularInt{
 	CircularInt& operator-=(const CircularInt &ci2);
 	friend int operator-=(int n, const CircularInt &ci2);
 	
+	CircularInt& operator*(int n);
+	CircularInt& operator*( const CircularInt &ci2);
+	friend CircularInt operator*(int n, const CircularInt &ci);
 	
+	CircularInt& operator*=(int n);
+	CircularInt& operator*=(const CircularInt &ci);
+	friend CircularInt operator*=(int n, const CircularInt &ci);
 	
 	// overload prefix ++ operator
 	CircularInt operator++(){
@@ -96,26 +102,6 @@ class CircularInt{
 		return H; // returns the original value	
 	}
 	
-	// overload * operator obj * int
-	friend int operator*(CircularInt &ci ,int n){
-		ci.hour = (ci.hour*n) % ci.max;
-		ci.hour = ci.getRange();
-		return ci.hour;
-	}
-	
-	// overload * operator obj * obj
-	friend int operator*(CircularInt &ci ,CircularInt &ci2){
-		ci.hour = (ci.hour*ci2.hour) % ci.max;
-		ci.hour = ci.getRange();
-		return ci.hour;
-	}
-	
-	// overload *= operator
-	int operator*=(int n){
-		hour = (hour*n);
-		hour = getRange();
-		return hour;
-	}
 	
 	//overload = operator
 	CircularInt& operator= (const CircularInt& ci){

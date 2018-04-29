@@ -277,6 +277,46 @@ int realHour(int a,int min,int max);
 		return n;
 	}
 	
+		// overload * operator obj * int
+	CircularInt& CircularInt::operator*(int n){
+		this->hour = (this->hour*n) % this->max;
+		this->hour = this->getRange();
+		return *this;
+	}
+	
+	// overload * operator obj * obj
+	CircularInt& CircularInt::operator*(const CircularInt &ci2){
+		this->hour = (this->hour*ci2.hour) % this->max;
+		this->hour = this->getRange();
+		return *this;
+	}
+	
+	CircularInt operator*(int n, const CircularInt &ci){
+		CircularInt temp(ci.min,ci.max);
+		temp.hour=n*ci.hour;
+		temp.hour=temp.getRange();
+		return temp;
+	}
+	
+	// overload *= operator
+	CircularInt& CircularInt::operator*=(int n){
+		this->hour = (this->hour*n);
+		this->hour = this->getRange();
+		return *this;
+	}
+	
+	CircularInt& CircularInt::operator*=(const CircularInt &ci){
+		this->hour = (hour*ci.hour);
+		this->hour = this->getRange();
+		return *this;
+	}
+	CircularInt operator*=(int n, const CircularInt &ci){
+		CircularInt temp(ci.min,ci.max);
+		temp.hour = (temp.hour*n);
+		temp.hour = temp.getRange();
+		return temp;
+	}
+	
 	int realHour(int a,int min,int max){
 	if(a < min)
 		return max - (min - a + 1);
