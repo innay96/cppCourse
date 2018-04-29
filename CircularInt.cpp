@@ -147,6 +147,7 @@ int realHour(int a,int min,int max);
         return false;
     }
     
+	//overload /= operator when obj /= int
     CircularInt& CircularInt::operator/=(int n){
     	int check=this->hour;	
 		this->hour= this->hour/n;
@@ -159,6 +160,7 @@ int realHour(int a,int min,int max);
 		return *this;
     }
     
+	//overload /= operator when obj /= obj
 	CircularInt& CircularInt::operator/=(const CircularInt &ci){
 		int check=this->hour;
 		this->hour= this->hour/ci.hour;
@@ -171,6 +173,7 @@ int realHour(int a,int min,int max);
 		return *this;
 	}
 	
+	//overload /= operator when int /= obj
 	int& operator/=(int& n ,const CircularInt &ci){
 		n=realHour(n,ci.min,ci.max);
 		int ans=n;
@@ -198,11 +201,14 @@ int realHour(int a,int min,int max);
 		return temp;	
 	}
 
-	CircularInt operator+(int a,const CircularInt &ci2){
-		CircularInt temp(ci2.min,ci2.max);
-		temp.hour = ci2.hour + a;
+	//overload + operator when int + obj
+	int& operator+(int a,const CircularInt &ci){
+		CircularInt temp(ci.min,ci.max);
+		a=realHour(a,ci.min,ci.max);
+		a = ci.hour + a;
+		temp.hour = a;
 		temp.hour = temp.getRange();
-		return temp;
+		return a;
 	}
 
 	// overload += operator
