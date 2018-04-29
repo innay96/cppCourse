@@ -320,8 +320,11 @@ int realHour(int a,int min,int max);
 	int realHour(int a,int min,int max){
 	if(a < min)
 		return max - ((-a)%max);
-	else if(a > max)
-		return (a % max);
+	else if(a > max){
+			int ans= (a % max);
+			if(ans==0) return max;
+			return ans;
+	}
 	return a;
 }
 

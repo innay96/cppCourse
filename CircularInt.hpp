@@ -177,7 +177,9 @@ class CircularInt{
 		if(hour < min)
 			return max - ((-hour)%max);
 		else if(hour > max){
-			return (hour % max);
+			int ans= (hour % max);
+			if(ans==0) return max;
+			return ans;
 		}
 		return hour;
 	}
