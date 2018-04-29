@@ -180,6 +180,103 @@ int realHour(int a,int min,int max);
 		return ans;	
 	}
     
+    // overload + operator
+	CircularInt CircularInt::operator+(int a){
+		CircularInt temp(this->min,this->max);
+		temp.hour = this->hour + a;
+		temp.hour = temp.getRange();
+		return temp;	
+	}
+
+	//overload + operator when obj + obj
+	CircularInt CircularInt::operator+(const CircularInt &ci2){
+		CircularInt temp(this->min,this->max);
+		temp.hour = this->hour + ci2.hour;
+		temp.hour = temp.getRange();
+		return temp;	
+	}
+
+	CircularInt operator+(int a,const CircularInt &ci2){
+		CircularInt temp(ci2.min,ci2.max);
+		temp.hour = ci2.hour + a;
+		temp.hour = temp.getRange();
+		return temp;
+	}
+
+	// overload += operator
+	CircularInt& CircularInt::operator+=(int n){
+		this->hour = (this->hour + n);	
+		this->hour = this->getRange();
+		return *this;	
+	}
+	
+	CircularInt& CircularInt::operator+=(const CircularInt &ci2){
+			this->hour = (this->hour + ci2.hour);	
+			this->hour = this->getRange();
+		return *this;
+	}
+
+	int operator+=(int n, const CircularInt &ci2){
+		n = (ci2.hour + n);	
+		n = realHour(n,ci2.min,ci2.max);
+		return n;
+	}
+
+	//overload - operator changes the object to negative
+	int CircularInt::operator-(){
+		return max-this->hour;
+	}
+
+	// overload - operator obg - int  
+	CircularInt CircularInt::operator-(int n){
+		int r= this->max - this->min +1;
+		int temp = (this->hour - this->min - n) % r;
+		int ans = (temp + r) % r + this->min;
+		CircularInt Cir(this->min,this->max);
+		Cir.hour = ans;
+		return Cir;
+	}
+	
+	// overload - operator when int - obj
+	CircularInt operator-(int a, CircularInt &ci){
+		int r= ci.max - ci.min +1;
+		int temp = (a - ci.hour - ci.min) % r;
+		int ans = (temp + r) % r + ci.min;
+		ci.hour = ans;
+		return ci;	
+	}
+	
+	//overload - operator when obj - obj
+	CircularInt CircularInt::operator-(CircularInt &ci2){
+		int r= this->max - this->min +1;
+		int temp = (this->hour - ci2.hour - this->min) % r;
+		int ans = (temp + r) % r + this->min;
+		CircularInt Cir(this->min,this->max);
+		Cir.hour = ans;
+		return Cir;	
+	}
+	
+	// overload -= operator
+	CircularInt& CircularInt::operator-=(int n){
+		int r= max - min +1;
+		int temp = (this->hour - min - n) % r;
+		int ans = (temp + r) % r + min;
+		this->hour = ans;
+		return *this;	
+	}
+	
+	CircularInt& CircularInt::operator-=(const CircularInt &ci2){
+		this->hour=this->hour-ci2.hour;
+		this->hour = this->getRange();
+		return *this;		
+	}
+	
+	int operator-=(int n, const CircularInt &ci2){
+		n=n-ci2.hour;
+		n=realHour(n,ci2.min,ci2.max);
+		return n;
+	}
+	
 	int realHour(int a,int min,int max){
 	if(a < min)
 		return max - (min - a + 1);
