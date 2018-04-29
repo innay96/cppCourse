@@ -20,9 +20,11 @@ class CircularInt{
     
 	bool operator==(int a);
 	bool operator==(const CircularInt &ci);
+	friend bool operator==(int a,const CircularInt &ci);
 	
 	bool operator!=(int a);
 	bool operator!=(const CircularInt &ci);
+	friend bool operator!=(int a,const CircularInt &ci);
 	
 	bool operator<(int a);
 	bool operator<(const CircularInt &ci);
