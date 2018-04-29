@@ -2,6 +2,7 @@
 using namespace std;
 	
 #include "CircularInt.hpp"
+#include "CircularInt.cpp"
 	
 	
 int main() {
