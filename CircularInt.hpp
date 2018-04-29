@@ -58,7 +58,7 @@ class CircularInt{
 	
 	CircularInt operator-(int n);
 	CircularInt operator-(CircularInt &ci2);
-	friend CircularInt operator-(int a, CircularInt &ci);
+	friend CircularInt operator-(int a,const CircularInt &ci);
 	
 	CircularInt& operator-=(int n);
 	CircularInt& operator-=(const CircularInt &ci2);
@@ -170,9 +170,10 @@ class CircularInt{
 	//checks if the hour is in the range
 	int getRange(){
 		if(hour < min)
-			return max - (min - hour + 1);
-		else if(hour > max)
+			return max - ((-hour)%max);
+		else if(hour > max){
 			return (hour % max);
+		}
 		return hour;
 	}
 };

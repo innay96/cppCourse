@@ -238,21 +238,18 @@ int realHour(int a,int min,int max);
 	}
 	
 	// overload - operator when int - obj
-	CircularInt operator-(int a, CircularInt &ci){
-		int r= ci.max - ci.min +1;
-		int temp = (a - ci.hour - ci.min) % r;
-		int ans = (temp + r) % r + ci.min;
-		ci.hour = ans;
-		return ci;	
+	CircularInt operator-(int a,const CircularInt &ci){
+		CircularInt temp(ci.min,ci.max);
+		temp.hour =a-ci.hour;
+		temp.hour =temp.getRange();
+		return temp;	
 	}
 	
 	//overload - operator when obj - obj
 	CircularInt CircularInt::operator-(CircularInt &ci2){
-		int r= this->max - this->min +1;
-		int temp = (this->hour - ci2.hour - this->min) % r;
-		int ans = (temp + r) % r + this->min;
 		CircularInt Cir(this->min,this->max);
-		Cir.hour = ans;
+		Cir.hour = this->hour-ci2.hour;
+		Cir.hour=Cir.getRange();
 		return Cir;	
 	}
 	

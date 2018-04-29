@@ -27,4 +27,5 @@ int main() {
 	// * when is there exactly one answer to a/b?
 	// * when are there two or more answers to a/b?
 	//	* when is there no answer to a/b?
+
 }
