@@ -72,130 +72,27 @@ class CircularInt{
 	CircularInt& operator*=(const CircularInt &ci);
 	friend int& operator*=(int& n, const CircularInt &ci);
 	
-	// overload prefix ++ operator
-	CircularInt operator++(){
-		hour++;
-		hour =this->getRange();
-		return 	*this;
-	}
+	CircularInt operator++();
+	CircularInt operator++(int);
 	
-	// overload postfix ++ operator
-	CircularInt operator++(int){
-		CircularInt H(*this); // saves the original value
-		hour++;
-		hour = this->getRange();
-		return H; // returns the original value	
-	}
+	CircularInt operator--();
+	CircularInt operator--(int);
 	
-	// overload prefix -- operator
-	CircularInt operator--(){
-		hour--;
-		hour = this->getRange();
-		return 	*this;
-	}
+	CircularInt& operator= (const CircularInt& ci);
+	CircularInt& operator= (int a);
 	
-	// overload postfix -- operator
-	CircularInt operator--(int){
-		CircularInt H(*this); // saves the original value
-		hour--;
-		hour = this->getRange();
-		return H; // returns the original value	
-	}
+	int operator/(int n);
+	friend int operator/(int n,const CircularInt &ci);
+	int operator/(const CircularInt &ci2);
 	
-	
-	//overload = operator
-	CircularInt& operator= (const CircularInt& ci){
-		this->min = ci.min;
-		this->max = ci.max;
-		this->hour = ci.hour;
-		return *this;
-	}
-	
-	//overload = int
-	CircularInt& operator= (int a){
-		this->hour = a;
-		return *this;
-	}
-	
-	
-	
-	//overload (/) operator when obj/int
-	int operator/(int n){
-		int check=this->hour;
-		this->hour= this->hour/n;
-		if(this->hour*n!=this->hour){
-			string msg="There is no number x in {"+to_string(this->min)+","+to_string(this->max)+"} such that x*"+to_string(n)+"="+to_string(this->hour);
-	 		this->hour=check;
-	 		throw msg ;//exception
-		}
-		this->hour=this->getRange();
-		return this->hour;
-	}
-	
-	//overload (/) operator when int/obj
-	friend int operator/(int n,const CircularInt &ci){
-		CircularInt temp(ci);
-		temp.hour= n/ci.hour;
-		if(temp.hour*n!=ci.hour){
-			string msg="There is no number x in {"+to_string(ci.min)+","+to_string(ci.max)+"} such that x*"+to_string(n)+"="+to_string(ci.hour);
-	 	
-	 		throw msg ;//exception
-		}
-		temp.hour=temp.getRange();
-		return temp.hour;
-	}
-	
-	//overload (/) operator when obj/obj
-	int operator/(const CircularInt &ci2){
-		int check=this->hour;
-		this->hour= this->hour/ci2.hour;
-		if(this->hour*ci2.hour!=this->hour){
-			string msg="There is no number x in {"+to_string(this->min)+","+to_string(this->max)+"} such that x*"+to_string(ci2.hour)+"="+to_string(this->hour);
-	 		this->hour=check;
-	 		throw msg ;//exception
-		}
-		this->hour=this->getRange();
-		return this->hour;
-	}
-	
-	
-	
-	// overload output stream (<<) operator
-	friend ostream& operator<< (ostream& os, const CircularInt &n){
-		os << n.hour;
-		return os;
-	}
-	
-	// overload input stream (>>) operator
-	friend istream& operator>> (istream& is, CircularInt &n){
-		is >> n.hour >> n.min >> n.max;
-		return is;
-	}
-	
-	int& operator>>(int& n){
-		n = this->hour;
-		return n;
-	}
-	
-	friend CircularInt& operator>>(int n,CircularInt& ci){
-		ci.hour=n;
-		ci.hour=ci.getRange();
-		return ci;
-	}
-	
-	string& operator>>(string& n){
-		string str=to_string(this->hour);
-		n=str;
-		return n;
-	}
-	float& operator>>(float& n){
-		n=(float)this->hour;
-		return n;
-	}
-	double& operator>>(double& n){
-		n=(double)this->hour;
-		return n;
-	}
+	friend ostream& operator<< (ostream& os, const CircularInt &n);
+	friend istream& operator>> (istream& is, CircularInt &n);
+	int& operator>>(int& n);
+	friend CircularInt& operator>>(int n,CircularInt& ci);
+	string& operator>>(string& n);
+	float& operator>>(float& n);
+	double& operator>>(double& n);
+
 	
 	//checks if the hour is in the range
 	int getRange(){
