@@ -173,24 +173,30 @@ class CircularInt{
 	}
 	
 	int& operator>>(int& n){
-		this->hour>>n;
+		n = this->hour;
 		return n;
 	}
-/*	
+	
+	friend CircularInt& operator>>(int n,CircularInt& ci){
+		ci.hour=n;
+		ci.hour=ci.getRange();
+		return ci;
+	}
+	
 	string& operator>>(string& n){
 		string str=to_string(this->hour);
-		str>>n;
+		n=str;
 		return n;
 	}
 	float& operator>>(float& n){
-		(float)this->hour>>n;
+		n=(float)this->hour;
 		return n;
 	}
 	double& operator>>(double& n){
-		(double)this->hour>>n;
+		n=(double)this->hour;
 		return n;
 	}
-*/	
+	
 	//checks if the hour is in the range
 	int getRange(){
 		if(hour < min)
