@@ -172,6 +172,25 @@ class CircularInt{
 		return is;
 	}
 	
+	int& operator>>(int& n){
+		this->hour>>n;
+		return n;
+	}
+/*	
+	string& operator>>(string& n){
+		string str=to_string(this->hour);
+		str>>n;
+		return n;
+	}
+	float& operator>>(float& n){
+		(float)this->hour>>n;
+		return n;
+	}
+	double& operator>>(double& n){
+		(double)this->hour>>n;
+		return n;
+	}
+*/	
 	//checks if the hour is in the range
 	int getRange(){
 		if(hour < min)

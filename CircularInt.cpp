@@ -305,12 +305,12 @@ int realHour(int a,int min,int max);
 	}
 	
 	CircularInt& CircularInt::operator*=(const CircularInt &ci){
-		this->hour = (hour*ci.hour);
+		this->hour = (this->hour*ci.hour);
 		this->hour = this->getRange();
 		return *this;
 	}
 	int& operator*=(int& n, const CircularInt &ci){
-		n=realHour(n,ci.min,ci.max);
+		
 		n=n*ci.hour;
 		n=realHour(n,ci.min,ci.max);
 		return n;
