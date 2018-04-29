@@ -42,6 +42,11 @@ int realHour(int a,int min,int max);
         return false;
 	}
 	
+	bool operator==(int a,const CircularInt &ci){
+		if(ci==a) return true;
+        return false;
+	}
+	
 	//overload != operator when obj != int
     bool CircularInt::operator!=(int a){
         a=realHour(a,this->min,this->max);
@@ -52,6 +57,11 @@ int realHour(int a,int min,int max);
     //overload != operator when obj != obj
 	bool CircularInt::operator!=(const CircularInt &ci){
 	    if(ci.hour==this->hour) return false;
+        return true; 
+	}
+	
+	bool operator!=(int a,const CircularInt &ci){
+		if(ci!=a) return false;
         return true; 
 	}
 	
