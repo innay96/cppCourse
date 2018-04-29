@@ -44,7 +44,7 @@ class CircularInt{
 	
 	CircularInt& operator/=(int n);
 	CircularInt& operator/=(const CircularInt &ci);
-	friend int operator/=(int n ,const CircularInt &ci);
+	friend int operator/=(int& n ,const CircularInt &ci);
 	
 	CircularInt operator+(int a);
 	CircularInt operator+(const CircularInt &ci2);
@@ -52,7 +52,7 @@ class CircularInt{
 	
 	CircularInt& operator+=(int n);
 	CircularInt& operator+=(const CircularInt &ci2);
-	friend int operator+=(int n, const CircularInt &ci2);
+	friend int operator+=(int& n, const CircularInt &ci2);
 	
 	int operator-();
 	
@@ -62,7 +62,7 @@ class CircularInt{
 	
 	CircularInt& operator-=(int n);
 	CircularInt& operator-=(const CircularInt &ci2);
-	friend int operator-=(int n, const CircularInt &ci2);
+	friend int operator-=(int& n, const CircularInt &ci2);
 	
 	CircularInt& operator*(int n);
 	CircularInt& operator*( const CircularInt &ci2);
@@ -70,7 +70,7 @@ class CircularInt{
 	
 	CircularInt& operator*=(int n);
 	CircularInt& operator*=(const CircularInt &ci);
-	friend CircularInt operator*=(int n, const CircularInt &ci);
+	friend CircularInt operator*=(int& n, const CircularInt &ci);
 	
 	// overload prefix ++ operator
 	CircularInt operator++(){
