@@ -202,15 +202,11 @@ int realHour(int a,int min,int max);
 	}
 
 	//overload + operator when int + obj
-	int& operator+(int a,const CircularInt &ci2){
-		/*
+	CircularInt operator+(int a,const CircularInt &ci2){
 		CircularInt temp(ci2.min,ci2.max);
 		temp.hour = ci2.hour + a;
 		temp.hour = temp.getRange();
-		return temp;*/
-		a += ci2.hour;
-		a = realHour(a, ci2.min, ci2.max);
-		return a;
+		return temp;
 	}
 
 	// overload += operator
