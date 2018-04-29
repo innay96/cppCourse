@@ -203,11 +203,11 @@ int realHour(int a,int min,int max);
 
 	//overload + operator when int + obj
 	int& operator+(int a,const CircularInt &ci){
-		CircularInt temp(ci.min,ci.max);
+		//CircularInt temp(ci.min,ci.max);
 		a=realHour(a,ci.min,ci.max);
 		a = ci.hour + a;
-		temp.hour = a;
-		temp.hour = temp.getRange();
+		//temp.hour = a;
+		//temp.hour = temp.getRange();
 		return a;
 	}
 
