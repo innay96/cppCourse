@@ -117,6 +117,8 @@ class CircularInt{
 		return *this;
 	}
 	
+	
+	
 	//overload (/) operator when obj/int
 	friend int operator/(const CircularInt &ci,int n){
 		CircularInt temp(ci);
@@ -177,3 +179,5 @@ class CircularInt{
 		return hour;
 	}
 };
+
+

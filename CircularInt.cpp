@@ -8,16 +8,15 @@ using namespace std;
 int realHour(int a,int min,int max);
     //overload % operator when obj % int
     CircularInt CircularInt::operator%(int a){
-        
     	CircularInt temp(this->min,this->max);
-    	temp.hour=temp.hour%a;
+    	temp.hour=this->hour%a;
     	temp.hour=temp.getRange();
     	return temp;
     }
     //overload % operator when obj % obj
    CircularInt CircularInt::operator%(const CircularInt &ci){
     	CircularInt temp(this->min,this->max);
-    	temp.hour=temp.hour%ci.hour;
+    	temp.hour=this->hour%ci.hour;
     	temp.hour=temp.getRange();
     	return temp;
    }
@@ -111,40 +110,40 @@ int realHour(int a,int min,int max);
 	//overload <= operator when obj <= int
 	bool CircularInt::operator<=(int a){
 	   a=realHour(a,this->min,this->max);
-	    if(a>this->hour&&a==this->hour) return true;
+	    if(a>this->hour||a==this->hour) return true;
         return false;
 	}
 	
 	//overload <= operator when obj <= obj
 	bool CircularInt::operator<=(const CircularInt &ci){
-	    if(ci.hour>this->hour&&ci.hour==this->hour) return true;
+	    if(ci.hour>this->hour||ci.hour==this->hour) return true;
         return false;
 	}
 	
 	//overload <= operator when int <= obj
 	bool operator<=(int a,const CircularInt &ci){
          a=realHour(a,ci.min,ci.max);
-	    if(a<ci.hour&&a==ci.hour) return true;
+	    if(a<ci.hour||a==ci.hour) return true;
         return false;
     }
 
     //overload >= operator when obj >= int
 	bool CircularInt::operator>=(int a){
 	   a=realHour(a,this->min,this->max);
-	    if(a<this->hour&&a==this->hour) return true;
+	    if(a<this->hour||a==this->hour) return true;
         return false;
 	}
 	
 	//overload >= operator when obj >= obj
 	bool CircularInt::operator>=(const CircularInt &ci){
-	    if(ci.hour < this->hour&&ci.hour==this->hour) return true;
+	    if(ci.hour < this->hour||ci.hour==this->hour) return true;
         return false;
 	}
 	
 	//overload >= operator when int >= obj
 	bool operator>=(int a,const CircularInt &ci){
          a=realHour(a,ci.min,ci.max);
-	    if(a>ci.hour&&a==ci.hour) return true;
+	    if(a>ci.hour||a==ci.hour) return true;
         return false;
     }
     
@@ -313,6 +312,7 @@ int realHour(int a,int min,int max);
 		temp.hour = temp.getRange();
 		return temp;
 	}
+
 	
 	int realHour(int a,int min,int max){
 	if(a < min)
