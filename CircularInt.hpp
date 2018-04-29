@@ -10,21 +10,51 @@ class CircularInt{
 		int hour;
 		int min;
 		int max;
-		CircularInt(int minimum, int maximum) { min = 	minimum; max = maximum; hour = min;}
+		CircularInt( int minimum, int maximum) { min = 	minimum; max = maximum; hour = min;}
 		CircularInt(CircularInt& ci) { this->min = ci.min; this->max = ci.max; this->hour = ci.hour;}
 		CircularInt(const CircularInt& ci) { this->min = ci.min; this->max = ci.max; this->hour = ci.hour;}
-
+		
+	CircularInt operator%(int a);
+	CircularInt operator%(const CircularInt &ci);	
+	friend CircularInt operator%(int a,const CircularInt &ci);
+    
+	bool operator==(int a);
+	bool operator==(const CircularInt &ci);
+	
+	bool operator!=(int a);
+	bool operator!=(const CircularInt &ci);
+	
+	bool operator<(int a);
+	bool operator<(const CircularInt &ci);
+	friend bool operator<(int a,const CircularInt &ci);
+	
+	bool operator>(int a);
+	bool operator>(const CircularInt &ci);
+	friend bool operator>(int a,const CircularInt &ci);
+	
+	bool operator<=(int a);
+	bool operator<=(const CircularInt &ci);
+	friend bool operator<=(int a,const CircularInt &ci);
+	
+	bool operator>=(int a);
+	bool operator>=(const CircularInt &ci);
+	friend bool operator>=(int a,const CircularInt &ci);
+	
+	CircularInt& operator/=(int n);
+	CircularInt& operator/=(const CircularInt &ci);
+	friend int operator/=(int n ,const CircularInt &ci);
 // overload + operator
-friend CircularInt operator+(CircularInt &ci, int a){
-	ci.hour = ci.hour + a;
-	ci.hour = ci.getRange();
-	return ci;	
+ CircularInt operator+(int a){
+	CircularInt temp(this->min,this->max);
+	temp.hour = this->hour + a;
+	temp.hour = temp.getRange();
+	return temp;	
 }
 
 //overload + operator when obj + obj
-friend CircularInt& operator+(const CircularInt &ci, const CircularInt &ci2){
-	CircularInt temp(ci.min,ci.max);
-	temp.hour = ci.hour + ci2.hour;
+CircularInt operator+(const CircularInt &ci2){
+	CircularInt temp(this->min,this->max);
+	temp.hour = this->hour + ci2.hour;
 	temp.hour = temp.getRange();
 	return temp;	
 }
@@ -45,12 +75,13 @@ int operator-(){
 }
 
 // overload - operator obg - int  
-friend CircularInt operator-(CircularInt &ci, int n){
-	int r= ci.max - ci.min +1;
-	int temp = (ci.hour - ci.min - n) % r;
-	int ans = (temp + r) % r + ci.min;
-	ci.hour = ans;
-	return ci;
+CircularInt operator-(int n){
+	int r= this->max - this->min +1;
+	int temp = (this->hour - this->min - n) % r;
+	int ans = (temp + r) % r + this->min;
+	CircularInt Cir(this->min,this->max);
+	Cir.hour = ans;
+	return Cir;
 }
 
 // overload - operator when int - obj
@@ -63,12 +94,13 @@ friend CircularInt operator-(int a, CircularInt &ci){
 }
 
 //overload - operator when obj - obj
-friend int operator-(CircularInt &ci, CircularInt &ci2){
-	int r= ci.max - ci.min +1;
-	int temp = (ci.hour - ci2.hour - ci.min) % r;
-	int ans = (temp + r) % r + ci.min;
-	ci.hour = ans;
-	return ci.hour;	
+ CircularInt operator-(CircularInt &ci2){
+	int r= this->max - this->min +1;
+	int temp = (this->hour - ci2.hour - this->min) % r;
+	int ans = (temp + r) % r + this->min;
+	CircularInt Cir(this->min,this->max);
+	Cir.hour = ans;
+	return Cir;	
 }
 
 // overload -= operator
