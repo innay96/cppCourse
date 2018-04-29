@@ -120,15 +120,16 @@ class CircularInt{
 	
 	
 	//overload (/) operator when obj/int
-	friend int operator/(const CircularInt &ci,int n){
-		CircularInt temp(ci);
-		temp.hour= ci.hour/n;
-		if(temp.hour*n!=ci.hour){
-			string msg="There is no number x in {"+to_string(ci.min)+","+to_string(ci.max)+"} such that x*"+to_string(n)+"="+to_string(ci.hour);
+	int operator/(int n){
+		int check=this->hour;
+		this->hour= this->hour/n;
+		if(this->hour*n!=this->hour){
+			string msg="There is no number x in {"+to_string(this->min)+","+to_string(this->max)+"} such that x*"+to_string(n)+"="+to_string(this->hour);
+	 		this->hour=check;
 	 		throw msg ;//exception
 		}
-		temp.hour=temp.getRange();
-		return temp.hour;
+		this->hour=this->getRange();
+		return this->hour;
 	}
 	
 	//overload (/) operator when int/obj
@@ -137,6 +138,7 @@ class CircularInt{
 		temp.hour= n/ci.hour;
 		if(temp.hour*n!=ci.hour){
 			string msg="There is no number x in {"+to_string(ci.min)+","+to_string(ci.max)+"} such that x*"+to_string(n)+"="+to_string(ci.hour);
+	 	
 	 		throw msg ;//exception
 		}
 		temp.hour=temp.getRange();
@@ -144,15 +146,16 @@ class CircularInt{
 	}
 	
 	//overload (/) operator when obj/obj
-	friend int operator/(const CircularInt &ci,const CircularInt &ci2){
-		CircularInt temp(ci);
-		temp.hour= ci.hour/ci2.hour;
-		if(temp.hour*ci2.hour!=ci.hour){
-			string msg="There is no number x in {"+to_string(ci.min)+","+to_string(ci.max)+"} such that x*"+to_string(ci2.hour)+"="+to_string(ci.hour);
+	int operator/(const CircularInt &ci2){
+		int check=this->hour;
+		this->hour= this->hour/ci2.hour;
+		if(this->hour*ci2.hour!=this->hour){
+			string msg="There is no number x in {"+to_string(this->min)+","+to_string(this->max)+"} such that x*"+to_string(ci2.hour)+"="+to_string(this->hour);
+	 		this->hour=check;
 	 		throw msg ;//exception
 		}
-		temp.hour=temp.getRange();
-		return temp.hour;
+		this->hour=this->getRange();
+		return this->hour;
 	}
 	
 	

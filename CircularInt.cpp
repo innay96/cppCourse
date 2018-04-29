@@ -152,6 +152,7 @@ int realHour(int a,int min,int max);
 		this->hour= this->hour/n;
 		if(this->hour*n!=check){
 			string msg="There is no number x in {"+to_string(this->min)+","+to_string(this->max)+"} such that x*"+to_string(n)+"="+to_string(check);
+ 			this->hour=check;
  			throw msg ;//exception
 		}
 		this->hour=this->getRange();
@@ -163,6 +164,7 @@ int realHour(int a,int min,int max);
 		this->hour= this->hour/ci.hour;
 		if(this->hour*ci.hour!=check){
 			string msg="There is no number x in {"+to_string(this->min)+","+to_string(this->max)+"} such that x*"+to_string(ci.hour)+"="+to_string(check);
+ 			this->hour=check;
  			throw msg ;//exception
 		}
 		this->hour=this->getRange();
