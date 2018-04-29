@@ -43,7 +43,8 @@ int realHour(int a,int min,int max);
 	}
 	
 	bool operator==(int a,const CircularInt &ci){
-		if(ci==a) return true;
+	 a=realHour(a,ci.min,ci.max);
+        if(a==ci.hour) return true;
         return false;
 	}
 	
@@ -61,7 +62,8 @@ int realHour(int a,int min,int max);
 	}
 	
 	bool operator!=(int a,const CircularInt &ci){
-		if(ci!=a) return false;
+	  a=realHour(a,ci.min,ci.max);
+       if(a==ci.hour) return false;
         return true; 
 	}
 	
