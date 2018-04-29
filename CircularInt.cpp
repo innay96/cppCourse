@@ -372,7 +372,7 @@ int realHour(int a,int min,int max);
 	int CircularInt::operator/(int n){
 		int check=this->hour;
 		this->hour= this->hour/n;
-		if(this->hour*n!=this->hour){
+		if(this->hour*n!=check){
 			string msg="There is no number x in {"+to_string(this->min)+","+to_string(this->max)+"} such that x*"+to_string(n)+"="+to_string(this->hour);
 	 		this->hour=check;
 	 		throw msg ;//exception
