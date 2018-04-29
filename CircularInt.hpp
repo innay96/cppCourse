@@ -167,9 +167,15 @@ int operator*=(int n){
 
 //overload = operator
 CircularInt& operator= (const CircularInt& ci){
-	min = ci.min;
-	max = ci.max;
-	hour = ci.hour;
+	this->min = ci.min;
+	this->max = ci.max;
+	this->hour = ci.hour;
+	return *this;
+}
+
+//overload = int
+CircularInt& operator= (int a){
+	this->hour = a;
 	return *this;
 }
 
